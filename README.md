@@ -1,5 +1,7 @@
 # Smart Drawio Next
 
+[English](./README.en.md)
+
 > 用自然语言或参考图片，几秒钟生成==可编辑的专业科研== Draw.io 图表。
 
 ## 在线网站
@@ -10,6 +12,7 @@
 
 ## 效果预览
 
+![首页](./public/images/page.png)
 ![Transformer](./public/images/transformer.png)
 ![Swin-Transformer](./public/images/swin.png)
 ![CLIP](./public/images/clip.png)
@@ -92,6 +95,91 @@ pnpm dev
 | `pnpm build`| 生产构建                               |
 | `pnpm start`| 以生产模式启动（需先执行 `pnpm build`） |
 | `pnpm lint` | 运行 ESLint                            |
+
+## Docker 部署
+
+### 前提条件
+
+- Docker ≥ 20.10
+- Docker Compose V2（`docker compose` 命令）
+
+### 快速启动
+
+```bash
+# 构建并后台启动
+docker compose up -d --build
+```
+
+启动后访问 `http://localhost:3000`。
+
+镜像基于多阶段构建（`node:22-alpine`），最终产物使用 Next.js standalone 模式，体积小、启动快。
+
+### 配置服务端 LLM（可选）
+
+如果想让用户通过访问密码共享同一套 API Key，在 `docker-compose.yml` 中取消注释并填写环境变量：
+
+```yaml
+services:
+  app:
+    environment:
+      - ACCESS_PASSWORD=your-secure-password
+      - SERVER_LLM_TYPE=openai
+      - SERVER_LLM_BASE_URL=https://api.openai.com/v1
+      - SERVER_LLM_API_KEY=sk-xxx
+      - SERVER_LLM_MODEL=gpt-4
+```
+
+也可以创建 `.env` 文件配合使用（参考 `.env.example`）。
+
+### 网络与代理配置
+
+默认的 `docker-compose.yml` 不绑定任何代理，适合直接提交到 Git。如果你的 Docker 环境需要额外网络配置：
+
+1. 复制 override 示例文件：
+   ```bash
+   cp docker-compose.override.example.yml docker-compose.override.yml
+   ```
+2. 按本机情况修改后重新启动：
+   ```bash
+   docker compose up -d --build
+   ```
+
+Docker Compose 会自动合并 `docker-compose.yml` 与 `docker-compose.override.yml`。
+
+#### 常见场景
+
+| 场景 | 配置方式 |
+|------|----------|
+| 容器通过宿主机代理访问外网 API | 启用 `NODE_USE_ENV_PROXY=1`、`HTTP_PROXY`、`HTTPS_PROXY` |
+| 访问宿主机上的本地模型（Ollama / LM Studio 等） | 设置 `ALLOW_LOCAL_LLM_BASE_URLS=true`，Base URL 使用 `http://host.docker.internal:端口` |
+| 代理会重签 HTTPS 证书 | 优先挂载 CA 证书并设置 `NODE_EXTRA_CA_CERTS`（见下方示例），避免使用 `NODE_TLS_REJECT_UNAUTHORIZED=0` |
+
+**挂载自定义 CA 证书示例**（在 `docker-compose.override.yml` 中）：
+
+```yaml
+services:
+  app:
+    environment:
+      NODE_EXTRA_CA_CERTS: "/usr/local/share/ca-certificates/proxy-ca.crt"
+    volumes:
+      - ./certs/proxy-ca.crt:/usr/local/share/ca-certificates/proxy-ca.crt:ro
+```
+
+### 常用命令
+
+```bash
+# 查看日志
+docker compose logs -f app
+
+# 停止服务
+docker compose down
+
+# 重新构建（代码更新后）
+docker compose up -d --build
+
+# 查看运行状态
+docker compose ps
+```
 
 ## LLM 配置与访问密码
 
