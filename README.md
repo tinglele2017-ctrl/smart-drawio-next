@@ -1,199 +1,224 @@
 # Smart Drawio Next
 
-[English](./README.en.md)
+[中文文档](./README.zh.md)
 
-> 用自然语言或参考图片，在几秒内生成可编辑、适合科研与演示场景的 Draw.io 图表。
+> Generate editable Draw.io diagrams from natural language or reference images in seconds, optimized for research, documentation, and presentations.
 
-## 在线体验
+## Live Demo
 
-- 在线地址：<https://smart-drawio-next.vercel.app/>
-- 说明：在线版本需要你自行提供 API Key
+- Demo: <https://smart-drawio-next.vercel.app/>
+- Note: the hosted version requires your own API key
 
-## 效果预览
+## Gallery
 
-| 首页 | Transformer |
-|------|-------------|
-| ![首页](./public/images/page.png) | ![Transformer](./public/images/transformer.png) |
+### Home
 
-| Swin-Transformer | CLIP |
-|------------------|------|
-| ![Swin-Transformer](./public/images/swin.png) | ![CLIP](./public/images/clip.png) |
+![Home](./public/images/page.png)
 
-| ProSST |
-|--------|
-| ![ProSST](./public/images/prosst.png) |
+### Transformer
 
-## 项目简介
+![Transformer](./public/images/transformer.png)
 
-[smart-drawio-next](https://github.com/yunshenwuchuxun/smart-drawio-next) 是一个基于 Next.js 16、Draw.io embed 和流式 LLM 调用的图表生成工具，适合：
+### Swin-Transformer
 
-- 用自然语言快速生成流程图、架构图、时序图等结构化图表
-- 上传参考图片，让 Vision 模型提取结构并转成可编辑内容
-- 在 Monaco Editor 中直接修改 XML / JSON
-- 将结果同步到内嵌 Draw.io 画布中继续可视化微调
-- 使用高级优化面板统一布局、线条、样式和注释
+![Swin-Transformer](./public/images/swin.png)
 
-项目内置多模型配置、访问密码、历史记录和通知系统，可直接部署为个人工具或团队内部服务。
+### CLIP
 
-## 核心能力
+![CLIP](./public/images/clip.png)
 
-- **流式生成**：实时显示生成过程，长内容可继续生成，适合较长的科研图、架构图和多模块流程图
-- **多模态输入**：支持文本描述和参考图片，既可以从零生成，也可以基于已有截图二次编辑
-- **代码与画布双视图**：XML 编辑与 Draw.io 渲染同步联动，既适合可视化用户，也适合希望精细控制代码的用户
-- **后处理工具链**：可批量优化结构、连线、文字和视觉风格，减少手工拖拽和样式调整
-- **多配置管理**：支持 OpenAI / Anthropic 兼容接口，适合个人、多模型切换和内部部署场景
-- **本地历史记录**：最近 20 条生成结果可回放，方便对比不同提示词和版本效果
-- **适合科研与技术表达**：相较于纯图片生成，更适合输出可编辑、可复用、可继续维护的结构化图表
+### ProSST
 
-## 支持的图表类型
+![ProSST](./public/images/prosst.png)
 
-支持 20+ 种图表类型，可手动指定，也可让模型自动判断：
+## Overview
 
-- 流程图
-- 思维导图
-- 组织架构图
-- 时序图
-- UML 类图
-- ER 图
-- 甘特图
-- 时间线
-- 树形图
-- 网络拓扑图
-- 架构图
-- 数据流图
-- 状态图
-- 泳道图
-- 概念图
-- 鱼骨图
-- SWOT 分析图
-- 金字塔图
-- 漏斗图
-- 维恩图
-- 矩阵图
-- 信息图
+[smart-drawio-next](https://github.com/yunshenwuchuxun/smart-drawio-next) is a diagram generation tool built with Next.js 16, embedded Draw.io, and streaming LLM APIs. It helps you:
 
-## 内置主题
+- Generate structured diagrams from natural language prompts
+- Upload reference images and convert them into editable diagram content
+- Fine-tune XML / JSON in Monaco Editor
+- Sync output directly into an embedded Draw.io canvas
+- Use post-processing tools to improve layout, connectors, styles, and annotations
 
-内置 10 套主题配色：
+The project includes multi-model configuration, access-password mode, generation history, and notifications. It can be deployed as a personal tool or an internal team service.
 
-- 科研（Research）
-- 商务（Business）
-- 暖色（Warm）
-- 冷色（Cool）
-- 暗色（Dark）
-- 高对比（Contrast）
-- 马卡龙（Pastel）
-- 森林（Forest）
-- 紫罗兰（Violet）
-- 中性（Neutral）
+## Core Features
 
-## 工具系统
+- **Streaming generation** with support for continuing truncated outputs
+- **Multimodal input** with both text and image-based workflows
+- **Code + canvas workflow** for editing XML and previewing the result side by side
+- **Post-processing toolchain** for structure, text, connector, and style refinement
+- **Multi-provider config management** for OpenAI / Anthropic-compatible APIs
+- **Local history** with replay support for recent generations
 
-生成后可以在侧边栏的“工具”面板中继续处理图表。所有操作基于 XML 变换，即时生效，并可继续迭代。
+## Supported Diagram Types
 
-### 1. 绘图技巧
+The app supports 20+ diagram types. You can choose one explicitly or let the model decide:
 
-用于批量优化结构与连线：
+- Flowchart
+- Mind Map
+- Org Chart
+- Sequence Diagram
+- UML Class Diagram
+- ER Diagram
+- Gantt Chart
+- Timeline
+- Tree
+- Network Topology
+- Architecture Diagram
+- Data Flow Diagram
+- State Diagram
+- Swimlane Diagram
+- Concept Map
+- Fishbone Diagram
+- SWOT Analysis
+- Pyramid Diagram
+- Funnel Diagram
+- Venn Diagram
+- Matrix Diagram
+- Infographic
 
-- **网格对齐**：坐标吸附到 10px 网格
-- **正交路由**：连线转为直角折线
-- **曲线连线**：连线转为平滑曲线
-- **标签背景**：给连线标签添加白底
-- **统一间距**：调整同层元素的水平间距
-- **交叉跳跃**：交叉连线显示跳跃弧线
-- **圆角连线**：让拐角更柔和
-- **统一箭头**：统一终点箭头样式
-- **清除拐点**：删除手动 waypoint，交给自动路由
+## Built-in Themes
 
-### 2. 样式预设
+10 built-in color themes are available:
 
-用于叠加局部视觉效果：
+- Research
+- Business
+- Warm
+- Cool
+- Dark
+- Contrast
+- Pastel
+- Forest
+- Violet
+- Neutral
 
-- 阴影效果
-- 渐变填充
-- 圆角样式
-- 玻璃效果
-- 手绘风格
-- 漫画风格
-- 虚线描边
-- 透明填充
-- 粗线描边
-- 无边框
-- 等宽圆角
-- 交叉填充
-- 点状填充
-- 锯齿填充
-- 半透明
-- 描边渐隐
-- 固定虚线
-- 空心箭头
+## Tools System
 
-### 3. 风格套装
+After generation, you can continue refining the diagram in the sidebar tools panel. All operations are XML-based transforms.
 
-用于一键应用完整视觉风格：
+### Drawing Tricks
 
-- **科研清爽**：规整、克制，适合论文插图
-- **演示卡片**：圆角、阴影、曲线，适合汇报展示
-- **商务简约**：正式商务风格
-- **扁平极简**：去装饰的现代扁平风
-- **线框草图**：适合讨论布局和信息层级
-- **漫画白板**：轻松、非正式讨论风格
-- **水彩手绘**：更具草图感和艺术感
-- **极简线条**：只保留轮廓和文本
-- **便签卡片**：便签式卡片视觉
-- **蓝图技术**：适合工程图、技术图纸
+Used for bulk layout and connector refinement:
 
-### 4. 文本工具
+- **Grid Snap**
+- **Orthogonal Routing**
+- **Curved Routing**
+- **Label Background**
+- **Consistent Spacing**
+- **Jump Crossings**
+- **Rounded Edges**
+- **Normalize Arrows**
+- **Remove Waypoints**
 
-用于统一文字排版：
+### Style Presets
 
-- 自动换行
-- 文本居中
-- 文本衬底
-- 文本加粗
-- 缩小字号
-- 文本间距
+Used for stackable visual effects:
 
-## 界面结构
+- Shadow
+- Gradient
+- Rounded
+- Glass
+- Sketch
+- Comic
+- Dashed
+- Transparent
+- Bold Stroke
+- No Stroke
+- Absolute Arc
+- Cross-Hatch
+- Dot Fill
+- Zigzag Fill
+- Semi-Opaque
+- Fade Stroke
+- Fixed Dash
+- Open Arrow
 
-1. **输入区（Chat + ImageUpload）**
-   - 输入自然语言描述
-   - 上传参考图片
-   - 支持停止生成、继续生成、错误提示
+### Style Packs
 
-2. **代码区（CodeEditor）**
-   - 查看和编辑 XML / JSON
-   - 执行清空、优化、高级优化、应用等操作
+Used for one-click full visual styles:
 
-3. **画布区（DrawioCanvas）**
-   - 渲染生成结果
-   - 在 Draw.io 中继续可视化调整
+- **Research Clean**
+- **Presentation Cards**
+- **Business Clean**
+- **Flat Minimal**
+- **Wireframe**
+- **Comic Whiteboard**
+- **Watercolor Sketch**
+- **Minimal Outline**
+- **Sticky Notes**
+- **Blueprint Tech**
 
-4. **辅助弹窗**
+### Text Tools
+
+Used for batch text formatting:
+
+- Wrap Labels
+- Center Text
+- Text Panels
+- Bold Text
+- Compact Text
+- Text Padding
+
+## Tools System Examples
+
+### Baseline: no style applied
+
+![Baseline no style](./public/images/tools-baseline-no-style.png)
+
+### Style preset example: comic + cross-hatch
+
+![Comic and cross-hatch preset](./public/images/tools-presets-comic-crosshatch.png)
+
+### Style pack example: blueprint tech
+
+![Blueprint tech style pack](./public/images/tools-style-pack-blueprint-tech.png)
+
+### Style pack example: business clean
+
+![Business clean style pack](./public/images/tools-style-pack-business-clean.png)
+
+## UI Structure
+
+1. **Input Area (Chat + ImageUpload)**
+   - Enter prompts
+   - Upload reference images
+   - Stop or continue generation
+
+2. **Code Editor**
+   - View and edit XML / JSON
+   - Run clear, optimize, advanced optimize, and apply actions
+
+3. **Canvas**
+   - Render the generated result
+   - Continue editing visually in Draw.io
+
+4. **Support Modals**
    - `ConfigManager`
    - `AccessPasswordModal`
    - `HistoryModal`
    - `OptimizationPanel`
-   - 其他辅助面板
+   - Other supporting panels
 
-## 技术栈
+## Tech Stack
 
-- **框架**：Next.js 16 (App Router) + React 19
-- **画布**：Draw.io embed
-- **编辑器**：`@monaco-editor/react`
-- **样式**：Tailwind CSS v4
-- **LLM 接入**：OpenAI / Anthropic 兼容接口 + SSE 流式响应
-- **状态持久化**：localStorage
+- **Framework**: Next.js 16 (App Router) + React 19
+- **Canvas**: Draw.io embed
+- **Editor**: `@monaco-editor/react`
+- **Styling**: Tailwind CSS v4
+- **LLM Integration**: OpenAI / Anthropic-compatible APIs with SSE streaming
+- **Persistence**: localStorage
 
-## 快速开始
+## Getting Started
 
-### 环境要求
+### Requirements
 
 - Node.js >= 18.18
 - pnpm >= 8
-- 可用的 OpenAI / Anthropic 兼容 API Key
+- An available OpenAI / Anthropic-compatible API key
 
-### 安装与启动
+### Install and Run
 
 ```bash
 git clone https://github.com/yunshenwuchuxun/smart-drawio-next.git
@@ -202,38 +227,38 @@ pnpm install
 pnpm dev
 ```
 
-启动后访问：<http://localhost:3000>
+Then open: <http://localhost:3000>
 
-### 常用命令
+### Common Commands
 
-| 命令 | 说明 |
-|------|------|
-| `pnpm dev` | 启动开发环境 |
-| `pnpm build` | 生产构建 |
-| `pnpm start` | 启动生产服务 |
-| `pnpm lint` | 运行 ESLint |
-| `pnpm test -- run` | 运行单元测试 |
+| Command | Description |
+|---------|-------------|
+| `pnpm dev` | Start development server |
+| `pnpm build` | Build for production |
+| `pnpm start` | Start production server |
+| `pnpm lint` | Run ESLint |
+| `pnpm test -- run` | Run unit tests |
 
-## Docker 部署
+## Docker Deployment
 
-### 前提条件
+### Requirements
 
 - Docker >= 20.10
 - Docker Compose V2
 
-### 快速启动
+### Quick Start
 
 ```bash
 docker compose up -d --build
 ```
 
-启动后访问：<http://localhost:3000>
+Then open: <http://localhost:3000>
 
-镜像使用多阶段构建和 Next.js standalone 输出，适合直接部署。
+The image uses a multi-stage build and Next.js standalone output for deployment-friendly packaging.
 
-### 服务端 LLM 配置（可选）
+### Optional Server-Side LLM Config
 
-如果希望多个用户共享同一套服务端配置，可在 `docker-compose.yml` 中配置：
+If you want multiple users to share one server-side configuration, set these in `docker-compose.yml`:
 
 ```yaml
 services:
@@ -246,29 +271,29 @@ services:
       - SERVER_LLM_MODEL=gpt-4
 ```
 
-也可以使用 `.env` 文件，参考 `.env.example`。
+You can also use a `.env` file based on `.env.example`.
 
-### 代理与本地模型
+### Proxy and Local Model Setup
 
-如果 Docker 需要代理或访问宿主机上的本地模型：
+If Docker needs a proxy or access to a model running on the host machine:
 
 ```bash
 cp docker-compose.override.example.yml docker-compose.override.yml
 ```
 
-然后按机器环境修改，再重新启动：
+Edit it for your environment, then restart:
 
 ```bash
 docker compose up -d --build
 ```
 
-常见场景：
+Typical use cases:
 
-- 使用宿主机代理访问外网 API
-- 访问宿主机上的 Ollama / LM Studio
-- 挂载自定义 CA 证书以通过企业代理
+- Routing traffic through a host proxy
+- Accessing host-local Ollama or LM Studio
+- Mounting a custom CA certificate for enterprise proxies
 
-### 常用 Docker 命令
+### Common Docker Commands
 
 ```bash
 docker compose logs -f app
@@ -277,43 +302,30 @@ docker compose up -d --build
 docker compose ps
 ```
 
-## 模型推荐
+## LLM Configuration
 
-推荐优先使用 **Claude 系列模型**，尤其适合：
+### Client-Side Config Mode
 
-- 科研图表生成
-- 架构图与流程图生成
-- 长文本约束下的结构化输出
-- 需要更稳定 XML / Draw.io 代码生成的场景
+By default, users configure these in the UI:
 
-如果你更关注复杂结构理解、文本布局一致性和长输出稳定性，Claude 系列通常会更合适。
-
-当然，项目同样兼容 OpenAI / Anthropic 风格的接口，你也可以根据自己的成本、速度和可用性自由切换。
-
-## LLM 配置
-
-### 前端多配置模式
-
-默认情况下，用户可以在前端自己配置：
-
-- 提供商（OpenAI / Anthropic / 兼容接口）
+- Provider
 - Base URL
 - API Key
 - Model
 
-所有配置仅保存在浏览器 localStorage 中。
+All values are stored in browser localStorage only.
 
-### 服务端访问密码模式
+### Server-Side Access Password Mode
 
-如果你想将 API Key 保留在服务器端：
+If you want the API key to stay on the server:
 
-1. 复制配置文件：
+1. Copy the example file:
 
 ```bash
 cp .env.example .env
 ```
 
-2. 设置以下变量：
+2. Set these variables:
 
 - `ACCESS_PASSWORD`
 - `SERVER_LLM_TYPE`
@@ -321,36 +333,32 @@ cp .env.example .env
 - `SERVER_LLM_API_KEY`
 - `SERVER_LLM_MODEL`
 
-3. 重启服务后，用户可通过“访问密码”启用服务端配置。
+3. Restart the service, then users can enable the server-side config through the access password flow.
 
-## 常见问题
+## FAQ
 
-### API Key 会上传到第三方吗？
+### Will my API key be uploaded to a third party?
 
-不会。前端本地配置仅保存在浏览器中，请求会先发送到你自己的服务端，再由服务端请求外部模型接口。
+No. Local configuration stays in the browser. Requests first go to your own server, which then calls the external model provider.
 
-### 生成内容被截断怎么办？
+### What if the output is truncated?
 
-界面会自动提供“继续生成”按钮，继续请求剩余内容。
+The UI provides a continue-generation action automatically when needed.
 
-### 图片识别失败怎么办？
+### What if image recognition fails?
 
-请使用支持 Vision 的模型，并确保图片格式与大小符合要求。
+Use a vision-capable model and make sure the image format and size are valid.
 
-### 历史记录会不会越来越大？
+### Will history grow without limit?
 
-不会。默认最多保留最近 20 条。
+No. The app keeps only the most recent 20 entries by default.
 
-## 致谢与贡献
+## Credits and Contributing
 
-- 本项目基于 [smart-excalidraw-next](https://github.com/liujuntao123/smart-excalidraw-next) 演进而来
-- 如果项目对你有帮助，欢迎：
-  - 给仓库点一个 Star
-  - 分享给更多需要的人
-
-## 友链
-
-- [linux.do](https://linux.do)
+- This project is based on [smart-excalidraw-next](https://github.com/liujuntao123/smart-excalidraw-next)
+- If it helps you, consider:
+  - Giving the repo a star
+  - Sharing it with others
 
 ## License
 
