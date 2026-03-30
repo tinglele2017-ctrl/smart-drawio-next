@@ -38,6 +38,106 @@ The project ships with multi-model configuration, access passwords, generation h
 - **Configuration Manager** — Create, clone, import/export any number of OpenAI/Anthropic-compatible configs from the UI with live connection testing.
 - **History & Notifications** — Last 20 generations saved in browser localStorage with instant replay. Toast notifications and confirmation dialogs improve overall UX.
 
+## Diagram Types
+
+20+ diagram types available — pick one or let the model decide:
+
+| Type | Type | Type | Type |
+|------|------|------|------|
+| Flowchart | Mind Map | Org Chart | Sequence Diagram |
+| UML Class | ER Diagram | Gantt Chart | Timeline |
+| Tree | Network Topology | Architecture | Data Flow |
+| State Diagram | Swimlane | Concept Map | Fishbone |
+| SWOT Analysis | Pyramid | Funnel | Venn Diagram |
+| Matrix | Infographic | | |
+
+## Diagram Themes
+
+10 built-in color themes, one-click switch:
+
+| Theme | Best For |
+|-------|----------|
+| Research | Paper figures, academic posters |
+| Business | Business reports, project reviews |
+| Warm | Education, user-facing demos |
+| Cool | Technical architecture, system design |
+| Dark | Dark-background presentations |
+| Contrast | Projector presentations, visual emphasis |
+| Pastel | Lightweight docs, friendly style |
+| Forest | Nature, sustainability topics |
+| Violet | Creative, design-oriented diagrams |
+| Neutral | General docs, low visual noise |
+
+## Tools System
+
+Post-process diagrams via the sidebar "Tools" panel. All operations are XML transforms — instant, undoable.
+
+### Drawing Tricks
+
+Batch adjustments to diagram structure and connectors:
+
+| Trick | Description |
+|-------|-------------|
+| Grid Snap | Align all coordinates to a 10px grid |
+| Orthogonal Routing | Switch connectors to right-angle polylines with auto waypoints |
+| Curved Routing | Switch connectors to smooth curves |
+| Label Background | Add white background to connector labels |
+| Consistent Spacing | Equalize horizontal spacing between same-layer elements |
+| Jump Crossings | Show arc jumps at connector crossings |
+| Rounded Edges | Round connector bends |
+| Normalize Arrows | Unify to solid end arrows, remove start arrows |
+| Remove Waypoints | Clear manual waypoints, let routing auto-calculate |
+
+### Style Presets
+
+Toggle visual effects, freely stackable:
+
+| Preset | Description |
+|--------|-------------|
+| Shadow | Add drop shadow to shapes |
+| Gradient | Auto-generate downward gradient from fill color |
+| Rounded | Enable rounded corners |
+| Glass | Add draw.io glass highlight |
+| Sketch | Enable rough sketch hand-drawn effect |
+| Comic | Cartoon-style with slight line jitter |
+| Dashed | Switch to dashed borders/connectors |
+| Transparent | Lower fill opacity for wireframe style |
+| Bold Stroke | Thicken shapes and connectors to 3px |
+| No Stroke | Remove borders, flat color blocks only |
+| Absolute Arc | Uniform rounded corners using absolute pixel values |
+| Cross-Hatch / Dots / Zigzag | Various hand-drawn pattern fills |
+| Open Arrow | Use open triangle arrowheads |
+
+### Style Packs
+
+Apply a complete visual style in one click — covers shapes, connectors, and text:
+
+| Pack | Description |
+|------|-------------|
+| Research Clean | No decorations, orthogonal lines, neat text — paper-ready |
+| Presentation Cards | Rounded + shadow + curves — presentation-ready |
+| Business Clean | Formal style with rounded shadows and orthogonal routing |
+| Flat Minimal | Remove all decorations, modern flat design |
+| Wireframe | Reduced visuals, focus on layout discussion |
+| Comic Whiteboard | Casual whiteboard discussion style |
+| Watercolor Sketch | Hachure fills + curves — artistic sketch feel |
+| Minimal Outline | No fill, pure outlines, structure only |
+| Sticky Notes | Large rounded corners + soft shadows, sticky-note feel |
+| Blueprint Tech | Fixed dashes + low-opacity fills, engineering blueprint style |
+
+### Text Tools
+
+Batch text formatting adjustments:
+
+| Tool | Description |
+|------|-------------|
+| Wrap Labels | Enable HTML and whiteSpace=wrap |
+| Center Text | Unify horizontal/vertical centering |
+| Text Panels | Add white background + light border to labels |
+| Bold Text | Set all text to bold |
+| Compact Text | Unify to 11px font size for dense diagrams |
+| Text Padding | Increase spacing between text and shape borders |
+
 ## UI Modules
 
 1. **Input Area (Chat + ImageUpload)**
