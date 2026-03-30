@@ -3,8 +3,13 @@ services:
     build: .
     ports:
       - "3000:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       - NODE_ENV=production
+      # For host-local proxies or host-local LLM endpoints, copy
+      # docker-compose.override.example.yml to docker-compose.override.yml
+      # and adjust it for the current machine.
       # - ACCESS_PASSWORD=
       # - SERVER_LLM_TYPE=openai
       # - SERVER_LLM_BASE_URL=https://api.openai.com/v1

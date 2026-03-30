@@ -1,0 +1,21 @@
+services:
+  app:
+    environment:
+      # Enable this only when the configured provider runs on the host machine,
+      # for example Ollama or LM Studio on localhost.
+      ALLOW_LOCAL_LLM_BASE_URLS: "true"
+
+      # Enable this only when Docker needs a host-local proxy to access remote APIs.
+      NODE_USE_ENV_PROXY: "1"
+      HTTP_PROXY: "http://host.docker.internal:7897"
+      HTTPS_PROXY: "http://host.docker.internal:7897"
+      NO_PROXY: "localhost,127.0.0.1,host.docker.internal,gateway.docker.internal"
+
+      # Preferred: mount your proxy CA certificate and point Node at it.
+      # NODE_EXTRA_CA_CERTS: "/usr/local/share/ca-certificates/proxy-ca.crt"
+
+      # Temporary workaround only. Do not commit or use this in shared/public deployments.
+      # NODE_TLS_REJECT_UNAUTHORIZED: "0"
+
+    # volumes:
+    #   - ./certs/proxy-ca.crt:/usr/local/share/ca-certificates/proxy-ca.crt:ro
