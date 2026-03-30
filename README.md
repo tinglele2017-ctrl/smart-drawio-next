@@ -11,21 +11,13 @@
 
 ## Gallery
 
-### Home
+| Home | Transformer |
+|------|-------------|
+| ![Home](./public/images/page.png) | ![Transformer](./public/images/transformer.png) |
 
-![Home](./public/images/page.png)
-
-### Transformer
-
-![Transformer](./public/images/transformer.png)
-
-### Swin-Transformer
-
-![Swin-Transformer](./public/images/swin.png)
-
-### CLIP
-
-![CLIP](./public/images/clip.png)
+| Swin-Transformer | CLIP |
+|------------------|------|
+| ![Swin-Transformer](./public/images/swin.png) | ![CLIP](./public/images/clip.png) |
 
 ### ProSST
 
@@ -163,21 +155,13 @@ Used for batch text formatting:
 
 ## Tools System Examples
 
-### Baseline: no style applied
+| Baseline: no style | Preset: comic + cross-hatch |
+|--------------------|-----------------------------|
+| ![Baseline no style](./public/images/tools-baseline-no-style.png) | ![Comic and cross-hatch preset](./public/images/tools-presets-comic-crosshatch.png) |
 
-![Baseline no style](./public/images/tools-baseline-no-style.png)
-
-### Style preset example: comic + cross-hatch
-
-![Comic and cross-hatch preset](./public/images/tools-presets-comic-crosshatch.png)
-
-### Style pack example: blueprint tech
-
-![Blueprint tech style pack](./public/images/tools-style-pack-blueprint-tech.png)
-
-### Style pack example: business clean
-
-![Business clean style pack](./public/images/tools-style-pack-business-clean.png)
+| Style pack: blueprint tech | Style pack: business clean |
+|----------------------------|----------------------------|
+| ![Blueprint tech style pack](./public/images/tools-style-pack-blueprint-tech.png) | ![Business clean style pack](./public/images/tools-style-pack-business-clean.png) |
 
 ## UI Structure
 

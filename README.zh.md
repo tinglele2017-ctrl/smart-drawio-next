@@ -11,21 +11,13 @@
 
 ## 效果预览
 
-### 首页
+| 首页 | Transformer |
+|------|-------------|
+| ![首页](./public/images/page.png) | ![Transformer](./public/images/transformer.png) |
 
-![首页](./public/images/page.png)
-
-### Transformer
-
-![Transformer](./public/images/transformer.png)
-
-### Swin-Transformer
-
-![Swin-Transformer](./public/images/swin.png)
-
-### CLIP
-
-![CLIP](./public/images/clip.png)
+| Swin-Transformer | CLIP |
+|------------------|------|
+| ![Swin-Transformer](./public/images/swin.png) | ![CLIP](./public/images/clip.png) |
 
 ### ProSST
 
@@ -164,21 +156,13 @@
 
 ## 工具系统示例
 
-### 基线图：未应用额外样式
+| 基线图：未应用额外样式 | 样式预设：漫画风格 + 交叉填充 |
+|------------------------|------------------------------|
+| ![未应用额外样式](./public/images/tools-baseline-no-style.png) | ![漫画风格与交叉填充](./public/images/tools-presets-comic-crosshatch.png) |
 
-![未应用额外样式](./public/images/tools-baseline-no-style.png)
-
-### 样式预设示例：漫画风格 + 交叉填充
-
-![漫画风格与交叉填充](./public/images/tools-presets-comic-crosshatch.png)
-
-### 风格套装示例：蓝图技术
-
-![蓝图技术](./public/images/tools-style-pack-blueprint-tech.png)
-
-### 风格套装示例：商务简约
-
-![商务简约](./public/images/tools-style-pack-business-clean.png)
+| 风格套装：蓝图技术 | 风格套装：商务简约 |
+|--------------------|--------------------|
+| ![蓝图技术](./public/images/tools-style-pack-blueprint-tech.png) | ![商务简约](./public/images/tools-style-pack-business-clean.png) |
 
 ## 界面结构
 
