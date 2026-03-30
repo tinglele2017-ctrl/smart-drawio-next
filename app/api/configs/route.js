@@ -4,7 +4,7 @@ import { error as logError } from '@/lib/logger';
 import { testConnection } from '@/lib/llm-client';
 import { checkRateLimit, getClientIp, rateLimitResponse } from '@/lib/rate-limiter';
 import { validateConnectionConfig } from '@/lib/schemas';
-import { isAllowedBaseUrl } from '@/lib/url-validator';
+import { isAllowedBaseUrl, shouldAllowLocalBaseUrls } from '@/lib/url-validator';
 
 /**
  * POST /api/configs
@@ -34,7 +34,9 @@ export async function POST(request) {
       );
     }
 
-    const { valid, reason } = isAllowedBaseUrl(validation.data.baseUrl);
+    const { valid, reason } = isAllowedBaseUrl(validation.data.baseUrl, {
+      allowLocal: shouldAllowLocalBaseUrls(),
+    });
     if (!valid) {
       return NextResponse.json(
         { success: false, message: `无效的基础 URL：${reason}` },

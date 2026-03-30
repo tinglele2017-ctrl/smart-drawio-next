@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { fetchModels } from '@/lib/llm-client';
 import { checkRateLimit, getClientIp, rateLimitResponse } from '@/lib/rate-limiter';
-import { isAllowedBaseUrl } from '@/lib/url-validator';
+import { isAllowedBaseUrl, shouldAllowLocalBaseUrls } from '@/lib/url-validator';
 import { error as logError } from '@/lib/logger';
 
 /**
@@ -27,7 +27,9 @@ export async function GET(request) {
       );
     }
 
-    const { valid, reason } = isAllowedBaseUrl(baseUrl);
+    const { valid, reason } = isAllowedBaseUrl(baseUrl, {
+      allowLocal: shouldAllowLocalBaseUrls(),
+    });
     if (!valid) {
       return NextResponse.json(
         { error: `Invalid base URL: ${reason}` },
