@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电商平台微服务架构图 — Draw.io × Floracat 联合出品</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  .page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+  }
+  .page-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 40px;
+  }
+  .diagram-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    padding: 48px;
+    max-width: 1100px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  .diagram-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4A90D9, #F5A623, #7ED321, #9B59B6, #E74C3C);
+  }
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1a1a2e;
+  }
+
+  /* === LAYER STYLES === */
+  .layer {
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .layer-users {
+    background: linear-gradient(135deg, #EBF5FB, #D6EAF8);
+    border: 2px solid #5DADE2;
+  }
+  .layer-gateway {
+    background: linear-gradient(135deg, #FEF9E7, #FCF3CF);
+    border: 2px solid #F5A623;
+  }
+  .layer-services {
+    background: linear-gradient(135deg, #E8F8F5, #D1F2EB);
+    border: 2px solid #27AE60;
+  }
+  .layer-data {
+    background: linear-gradient(135deg, #F4ECF7, #E8DAEF);
+    border: 2px solid #8E44AD;
+  }
+  .layer-infra {
+    background: linear-gradient(135deg, #FDEDEC, #FADBD8);
+    border: 2px solid #E74C3C;
+  }
+
+  .layer-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .layer-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; color: #fff; font-weight: 700;
+  }
+  .layer-name {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .layer-users .layer-icon { background: #5DADE2; }
+  .layer-users .layer-name { color: #2471A3; }
+  .layer-gateway .layer-icon { background: #F5A623; }
+  .layer-gateway .layer-name { color: #B7950B; }
+  .layer-services .layer-icon { background: #27AE60; }
+  .layer-services .layer-name { color: #1E8449; }
+  .layer-data .layer-icon { background: #8E44AD; }
+  .layer-data .layer-name { color: #6C3483; }
+  .layer-infra .layer-icon { background: #E74C3C; }
+  .layer-infra .layer-name { color: #C0392B; }
+
+  /* === NODE GRID === */
+  .nodes {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .node {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 18px;
+    min-width: 120px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+  .node:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+  .node-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 3px;
+  }
+  .node-desc {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.4;
+  }
+
+  /* === ARROWS === */
+  .arrow-section {
+    display: flex;
+    justify-content: center;
+    padding: 6px 0;
+  }
+  .arrow-down {
+    width: 2px;
+    height: 24px;
+    background: #bbb;
+    position: relative;
+  }
+  .arrow-down::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #bbb;
+  }
+  .arrow-dashed {
+    border-style: dashed;
+    background: repeating-linear-gradient(
+      to bottom, #ccc 0, #ccc 6px, transparent 6px, transparent 12px
+    );
+  }
+
+  /* === LEGEND === */
+  .legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #666;
+  }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 3px;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 11px;
+    color: #aaa;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-title">电商平台微服务架构图</div>
+<div class="page-subtitle">Draw.io 智能生成 × Floracat 精美渲染 | 联合出品</div>
+
+<div class="diagram-card">
+
+  <!-- 用户接入层 -->
+  <div class="layer layer-users">
+    <div class="layer-header">
+      <div class="layer-icon">U</div>
+      <div class="layer-name">用户接入层</div>
+    </div>
+    <div class="nodes">
+      <div class="node">
+        <div class="node-title">📱 移动端 APP</div>
+        <div class="node-desc">iOS / Android</div>
+      </div>
+      <div class="node">
+        <div class="node-title">💻 Web 前端</div>
+        <div class="node-desc">React SPA</div>
+      </div>
+      <div class="node">
+        <div class="node-title">🏪 商家后台</div>
+        <div class="node-desc">Vue 管理端</div>
+      </div>
+      <div class="node">
+        <div class="node-title">🔗 开放平台</div>
+        <div class="node-desc">第三方接入</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-section"><div class="arrow-down"></div></div>
+
+  <!-- API 网关层 -->
+  <div class="layer layer-gateway">
+    <div class="layer-header">
+      <div class="layer-icon">G</div>
+      <div class="layer-name">API 网关层</div>
+    </div>
+    <div class="nodes">
+      <div class="node">
+        <div class="node-title">🔐 认证鉴权</div>
+        <div class="node-desc">JWT / OAuth2</div>
+      </div>
+      <div class="node">
+        <div class="node-title">⚖️ 负载均衡</div>
+        <div class="node-desc">Nginx / SLB</div>
+      </div>
+      <div class="node">
+        <div class="node-title">🚦 限流熔断</div>
+        <div class="node-desc">Sentinel</div>
+      </div>
+      <div class="node">
+        <div class="node-title">📝 日志采集</div>
+        <div class="node-desc">全链路追踪</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-section"><div class="arrow-down"></div></div>
+
+  <!-- 业务微服务层 -->
+  <div class="layer layer-services">
+    <div class="layer-header">
+      <div class="layer-icon">S</div>
+      <div class="layer-name">业务微服务层</div>
+    </div>
+    <div class="nodes">
+      <div class="node">
+        <div class="node-title">👤 用户服务</div>
+        <div class="node-desc">注册/登录/画像</div>
+      </div>
+      <div class="node">
+        <div class="node-title">🛒 订单服务</div>
+        <div class="node-desc">下单/支付/履约</div>
+      </div>
+      <div class="node">
+        <div class="node-title">📦 商品服务</div>
+        <div class="node-desc">SKU/库存/价格</div>
+      </div>
+      <div class="node">
+        <div class="node-title">💬 消息服务</div>
+        <div class="node-desc">IM/通知/推送</div>
+      </div>
+      <div class="node">
+        <div class="node-title">📊 数据服务</div>
+        <div class="node-desc">报表/分析/BI</div>
+      </div>
+      <div class="node">
+        <div class="node-title">🔍 搜索服务</div>
+        <div class="node-desc">ES 全文检索</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-section"><div class="arrow-down arrow-dashed"></div></div>
+
+  <!-- 数据存储层 -->
+  <div class="layer layer-data">
+    <div class="layer-header">
+      <div class="layer-icon">D</div>
+      <div class="layer-name">数据存储层</div>
+    </div>
+    <div class="nodes">
+      <div class="node">
+        <div class="node-title">🗄️ MySQL</div>
+        <div class="node-desc">主数据库集群</div>
+      </div>
+      <div class="node">
+        <div class="node-title">⚡ Redis</div>
+        <div class="node-desc">缓存/会话</div>
+      </div>
+      <div class="node">
+        <div class="node-title">📨 Kafka</div>
+        <div class="node-desc">消息队列</div>
+      </div>
+      <div class="node">
+        <div class="node-title">📁 OSS</div>
+        <div class="node-desc">对象存储</div>
+      </div>
+      <div class="node">
+        <div class="node-title">🔎 ES</div>
+        <div class="node-desc">搜索引擎</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-section"><div class="arrow-down arrow-dashed"></div></div>
+
+  <!-- 基础设施层 -->
+  <div class="layer layer-infra">
+    <div class="layer-header">
+      <div class="layer-icon">I</div>
+      <div class="layer-name">基础设施层</div>
+    </div>
+    <div class="nodes">
+      <div class="node">
+        <div class="node-title">☸️ Kubernetes</div>
+        <div class="node-desc">容器编排</div>
+      </div>
+      <div class="node">
+        <div class="node-title">🐳 Docker</div>
+        <div class="node-desc">容器化部署</div>
+      </div>
+      <div class="node">
+        <div class="node-title">📈 Prometheus</div>
+        <div class="node-desc">监控告警</div>
+      </div>
+      <div class="node">
+        <div class="node-title">🔄 Jenkins</div>
+        <div class="node-desc">CI/CD 流水线</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 图例 -->
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#5DADE2;"></div>
+      <span>用户层（蓝色）</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#F5A623;"></div>
+      <span>网关层（金色）</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#27AE60;"></div>
+      <span>业务层（绿色）</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#8E44AD;"></div>
+      <span>数据层（紫色）</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-dot" style="background:#E74C3C;"></div>
+      <span>基础设施（橙红）</span>
+    </div>
+    <div class="legend-item">
+      <span style="border-bottom:2px solid #bbb;width:16px;display:inline-block;"></span>
+      <span>实线 = 主数据流</span>
+    </div>
+    <div class="legend-item">
+      <span style="border-bottom:2px dashed #ccc;width:16px;display:inline-block;"></span>
+      <span>虚线 = 辅助/支撑</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  由 Draw.io AI 智能生成内容 + Floracat 精美渲染 | 联合出品 © 2026
+</div>
+
+</body>
+</html>

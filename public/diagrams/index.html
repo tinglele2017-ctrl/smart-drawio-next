@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>架构图库 — Draw.io × Floracat 联合出品</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Microsoft YaHei","PingFang SC",sans-serif; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); min-height:100vh; padding:48px 20px; }
+  .container { max-width:800px; margin:0 auto; }
+  h1 { color:#fff; text-align:center; font-size:28px; margin-bottom:8px; letter-spacing:2px; }
+  .sub { color:rgba(255,255,255,.7); text-align:center; font-size:13px; margin-bottom:36px; }
+  .card { background:#fff; border-radius:14px; padding:24px 28px; margin-bottom:16px; box-shadow:0 4px 20px rgba(0,0,0,.1); transition:transform .2s,box-shadow .2s; display:block; text-decoration:none; color:inherit; }
+  .card:hover { transform:translateY(-3px); box-shadow:0 8px 30px rgba(0,0,0,.15); }
+  .card-title { font-size:18px; font-weight:700; color:#1a1a2e; margin-bottom:6px; }
+  .card-desc { font-size:13px; color:#666; line-height:1.5; }
+  .card-tag { display:inline-block; background:#e8f4fd; color:#2196F3; font-size:11px; padding:2px 8px; border-radius:4px; margin-top:8px; margin-right:6px; }
+  .footer { text-align:center; color:rgba(255,255,255,.5); font-size:11px; margin-top:32px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>📐 架构图库</h1>
+  <p class="sub">Draw.io AI 智能生成 × Floracat 精美渲染 | 联合出品</p>
+
+  <a class="card" href="./drawio-x-floracat-demo.html">
+    <div class="card-title">🛒 电商平台微服务架构图</div>
+    <div class="card-desc">五层架构：用户接入 → API 网关 → 业务微服务 → 数据存储 → 基础设施</div>
+    <span class="card-tag">分层架构</span>
+    <span class="card-tag">微服务</span>
+    <span class="card-tag">电商</span>
+  </a>
+
+  <a class="card" href="./vehicle-rd-architecture.html">
+    <div class="card-title">🚗 整车研发数字化架构图</div>
+    <div class="card-desc">六层架构：用户角色 → 业务应用 → 数字化平台 → 数据资产 → 基础设施 → 标准规范</div>
+    <span class="card-tag">分层架构</span>
+    <span class="card-tag">MBSE</span>
+    <span class="card-tag">汽车研发</span>
+  </a>
+
+  <div class="footer">上传更多图表到 public/diagrams/ 目录即可自动展示在这里</div>
+</div>
+</body>
+</html>

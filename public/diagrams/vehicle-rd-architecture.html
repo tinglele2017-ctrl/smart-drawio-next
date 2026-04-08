@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>整车研发数字化架构图 — Draw.io × Floracat 联合出品</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    background: linear-gradient(160deg, #f0f4f8 0%, #d9e2ec 100%);
+    min-height: 100vh;
+    padding: 48px 20px;
+  }
+  .page { max-width: 1200px; margin: 0 auto; }
+  .page-title { font-size: 32px; font-weight: 800; color: #102a43; text-align: center; letter-spacing: 3px; }
+  .page-sub { font-size: 13px; color: #627d98; text-align: center; margin: 6px 0 36px; }
+  .card {
+    background: #fff; border-radius: 18px; padding: 44px 40px 32px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.07); position: relative; overflow: hidden;
+  }
+  .card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:5px;
+    background: linear-gradient(90deg,#3b82f6,#f59e0b,#10b981,#8b5cf6,#ef4444,#06b6d4);
+  }
+
+  /* layer */
+  .layer { border-radius: 14px; padding: 20px 24px; margin-bottom: 12px; position: relative; }
+  .l-header { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+  .l-icon { width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;font-weight:800; }
+  .l-name { font-size:15px; font-weight:700; letter-spacing:1px; }
+  .nodes { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+  .n { background:#fff; border-radius:10px; padding:11px 16px; min-width:125px; text-align:center;
+       box-shadow:0 2px 8px rgba(0,0,0,.05); transition:transform .2s,box-shadow .2s; cursor:default; }
+  .n:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(0,0,0,.12); }
+  .n-t { font-size:12.5px; font-weight:700; color:#102a43; margin-bottom:2px; }
+  .n-d { font-size:10.5px; color:#888; line-height:1.35; }
+
+  /* colour themes */
+  .t-blue   { background:linear-gradient(135deg,#eff6ff,#dbeafe); border:2px solid #3b82f6; }
+  .t-blue .l-icon { background:#3b82f6; } .t-blue .l-name { color:#1d4ed8; }
+  .t-amber  { background:linear-gradient(135deg,#fffbeb,#fef3c7); border:2px solid #f59e0b; }
+  .t-amber .l-icon { background:#f59e0b; } .t-amber .l-name { color:#b45309; }
+  .t-green  { background:linear-gradient(135deg,#ecfdf5,#d1fae5); border:2px solid #10b981; }
+  .t-green .l-icon { background:#10b981; } .t-green .l-name { color:#047857; }
+  .t-purple { background:linear-gradient(135deg,#f5f3ff,#ede9fe); border:2px solid #8b5cf6; }
+  .t-purple .l-icon { background:#8b5cf6; } .t-purple .l-name { color:#6d28d9; }
+  .t-red    { background:linear-gradient(135deg,#fef2f2,#fee2e2); border:2px solid #ef4444; }
+  .t-red .l-icon { background:#ef4444; } .t-red .l-name { color:#b91c1c; }
+  .t-cyan   { background:linear-gradient(135deg,#ecfeff,#cffafe); border:2px solid #06b6d4; }
+  .t-cyan .l-icon { background:#06b6d4; } .t-cyan .l-name { color:#0e7490; }
+
+  .arrow { display:flex; justify-content:center; padding:4px 0; }
+  .arrow-line { width:2px; height:22px; background:#b0bec5; position:relative; }
+  .arrow-line::after { content:''; position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+    width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:8px solid #b0bec5; }
+  .arrow-dash { background:repeating-linear-gradient(to bottom,#b0bec5 0,#b0bec5 6px,transparent 6px,transparent 12px); }
+
+  .legend { display:flex; gap:16px; flex-wrap:wrap; margin-top:22px; padding-top:14px; border-top:1px solid #eee; }
+  .leg { display:flex; align-items:center; gap:5px; font-size:11px; color:#627d98; }
+  .leg-dot { width:10px;height:10px;border-radius:3px; }
+  .foot { text-align:center; font-size:11px; color:#aab; margin-top:20px; }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="page-title">整车研发数字化架构图</div>
+<div class="page-sub">Draw.io AI 智能生成内容 × Floracat 精美渲染 | 联合出品</div>
+
+<div class="card">
+
+<!-- ① 用户角色层 -->
+<div class="layer t-blue">
+  <div class="l-header"><div class="l-icon">U</div><div class="l-name">用户角色层</div></div>
+  <div class="nodes">
+    <div class="n"><div class="n-t">👨‍💼 项目总监</div><div class="n-d">整车项目管理</div></div>
+    <div class="n"><div class="n-t">🔧 研发工程师</div><div class="n-d">设计/仿真/标定</div></div>
+    <div class="n"><div class="n-t">🧪 测试工程师</div><div class="n-d">试验/验证/认证</div></div>
+    <div class="n"><div class="n-t">🏭 制造工程师</div><div class="n-d">工艺/产线/质量</div></div>
+    <div class="n"><div class="n-t">🤝 供应商协同</div><div class="n-d">外部伙伴接入</div></div>
+    <div class="n"><div class="n-t">📊 管理层</div><div class="n-d">决策/看板/汇报</div></div>
+  </div>
+</div>
+
+<div class="arrow"><div class="arrow-line"></div></div>
+
+<!-- ② 业务应用层 -->
+<div class="layer t-amber">
+  <div class="l-header"><div class="l-icon">A</div><div class="l-name">业务应用层</div></div>
+  <div class="nodes">
+    <div class="n"><div class="n-t">📐 PLM 系统</div><div class="n-d">产品生命周期管理</div></div>
+    <div class="n"><div class="n-t">✏️ CAD 设计</div><div class="n-d">CATIA / NX / Creo</div></div>
+    <div class="n"><div class="n-t">🔬 CAE 仿真</div><div class="n-d">结构/流体/碰撞</div></div>
+    <div class="n"><div class="n-t">📋 项目管理</div><div class="n-d">APQP / 里程碑</div></div>
+    <div class="n"><div class="n-t">🏷️ BOM 管理</div><div class="n-d">EBOM / MBOM</div></div>
+    <div class="n"><div class="n-t">🚗 标定管理</div><div class="n-d">ECU 标定/OTA</div></div>
+    <div class="n"><div class="n-t">📝 需求管理</div><div class="n-d">DOORS / Polarion</div></div>
+    <div class="n"><div class="n-t">✅ 质量管理</div><div class="n-d">FMEA / SPC / 8D</div></div>
+  </div>
+</div>
+
+<div class="arrow"><div class="arrow-line"></div></div>
+
+<!-- ③ 数字化平台层 -->
+<div class="layer t-green">
+  <div class="l-header"><div class="l-icon">P</div><div class="l-name">数字化平台层</div></div>
+  <div class="nodes">
+    <div class="n"><div class="n-t">🔗 数据集成总线</div><div class="n-d">ESB / API Gateway</div></div>
+    <div class="n"><div class="n-t">🔄 流程引擎</div><div class="n-d">BPM / 审批流</div></div>
+    <div class="n"><div class="n-t">📊 BI 分析平台</div><div class="n-d">报表/驾驶舱</div></div>
+    <div class="n"><div class="n-t">🤖 AI/ML 平台</div><div class="n-d">智能仿真/预测</div></div>
+    <div class="n"><div class="n-t">👥 协同平台</div><div class="n-d">在线评审/会议</div></div>
+    <div class="n"><div class="n-t">📱 移动端平台</div><div class="n-d">移动办公/审批</div></div>
+    <div class="n"><div class="n-t">🔐 权限中心</div><div class="n-d">SSO / RBAC</div></div>
+  </div>
+</div>
+
+<div class="arrow"><div class="arrow-line arrow-dash"></div></div>
+
+<!-- ④ 数据层 -->
+<div class="layer t-purple">
+  <div class="l-header"><div class="l-icon">D</div><div class="l-name">数据资产层</div></div>
+  <div class="nodes">
+    <div class="n"><div class="n-t">📦 产品数据</div><div class="n-d">3D模型/图纸/规范</div></div>
+    <div class="n"><div class="n-t">🧪 仿真数据</div><div class="n-d">CAE 结果/报告</div></div>
+    <div class="n"><div class="n-t">📈 试验数据</div><div class="n-d">台架/路试/传感器</div></div>
+    <div class="n"><div class="n-t">📋 变更数据</div><div class="n-d">ECR / ECN 流程</div></div>
+    <div class="n"><div class="n-t">🏷️ 零件库</div><div class="n-d">标准件/通用件</div></div>
+    <div class="n"><div class="n-t">📚 知识库</div><div class="n-d">经验/教训/专利</div></div>
+  </div>
+</div>
+
+<div class="arrow"><div class="arrow-line arrow-dash"></div></div>
+
+<!-- ⑤ 基础设施层 -->
+<div class="layer t-red">
+  <div class="l-header"><div class="l-icon">I</div><div class="l-name">基础设施层</div></div>
+  <div class="nodes">
+    <div class="n"><div class="n-t">☁️ 混合云</div><div class="n-d">私有云 + 公有云</div></div>
+    <div class="n"><div class="n-t">🖥️ HPC 集群</div><div class="n-d">高性能计算</div></div>
+    <div class="n"><div class="n-t">💾 存储平台</div><div class="n-d">NAS / SAN / 对象</div></div>
+    <div class="n"><div class="n-t">🔒 安全体系</div><div class="n-d">零信任/加密</div></div>
+    <div class="n"><div class="n-t">📡 网络基础</div><div class="n-d">SD-WAN / 专线</div></div>
+    <div class="n"><div class="n-t">🔄 DevOps</div><div class="n-d">CI/CD / 容器化</div></div>
+  </div>
+</div>
+
+<div class="arrow"><div class="arrow-line arrow-dash"></div></div>
+
+<!-- ⑥ 标准规范层 -->
+<div class="layer t-cyan">
+  <div class="l-header"><div class="l-icon">S</div><div class="l-name">标准规范层</div></div>
+  <div class="nodes">
+    <div class="n"><div class="n-t">📐 ASPICE</div><div class="n-d">汽车软件过程改进</div></div>
+    <div class="n"><div class="n-t">🛡️ ISO 26262</div><div class="n-d">功能安全标准</div></div>
+    <div class="n"><div class="n-t">🔐 ISO 21434</div><div class="n-d">网络安全工程</div></div>
+    <div class="n"><div class="n-t">📋 IATF 16949</div><div class="n-d">汽车质量管理</div></div>
+    <div class="n"><div class="n-t">🌍 GDPR</div><div class="n-d">数据隐私合规</div></div>
+  </div>
+</div>
+
+<!-- 图例 -->
+<div class="legend">
+  <div class="leg"><div class="leg-dot" style="background:#3b82f6"></div><span>用户角色（蓝）</span></div>
+  <div class="leg"><div class="leg-dot" style="background:#f59e0b"></div><span>业务应用（金）</span></div>
+  <div class="leg"><div class="leg-dot" style="background:#10b981"></div><span>数字平台（绿）</span></div>
+  <div class="leg"><div class="leg-dot" style="background:#8b5cf6"></div><span>数据资产（紫）</span></div>
+  <div class="leg"><div class="leg-dot" style="background:#ef4444"></div><span>基础设施（红）</span></div>
+  <div class="leg"><div class="leg-dot" style="background:#06b6d4"></div><span>标准规范（青）</span></div>
+  <div class="leg"><span style="border-bottom:2px solid #b0bec5;width:14px;display:inline-block"></span><span>实线=主数据流</span></div>
+  <div class="leg"><span style="border-bottom:2px dashed #b0bec5;width:14px;display:inline-block"></span><span>虚线=支撑服务</span></div>
+</div>
+
+</div><!-- .card -->
+
+<div class="foot">Draw.io AI 智能生成 × Floracat 精美渲染 | 整车研发数字化架构图 © 2026</div>
+</div><!-- .page -->
+</body>
+</html>
