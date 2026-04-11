@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>产品需求管理流程 - 泳道图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: #f5f0eb; padding: 40px 20px; }
+  .page { max-width: 1400px; margin: 0 auto; }
+  h1 { text-align: center; font-size: 28px; color: #2c3e50; margin-bottom: 8px; letter-spacing: 2px; }
+  .subtitle { text-align: center; font-size: 14px; color: #7f8c8d; margin-bottom: 40px; }
+  .swim-lanes { position: relative; }
+  .lane { display: flex; align-items: stretch; min-height: 90px; border-bottom: 1px solid #e0d8d0; position: relative; }
+  .lane:last-child { border-bottom: none; }
+  .lane-label { width: 120px; min-width: 120px; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: bold; color: #fff; padding: 12px 8px; text-align: center; line-height: 1.4;
+    border-radius: 0; position: relative; z-index: 2; }
+  .lane-content { flex: 1; display: flex; align-items: center; padding: 12px 16px; gap: 20px; position: relative; flex-wrap: wrap; }
+  /* Lane colors */
+  .lane-demand .lane-label { background: #3498db; }
+  .lane-pm .lane-label { background: #e67e22; }
+  .lane-tech .lane-label { background: #27ae60; }
+  .lane-test .lane-label { background: #9b59b6; }
+  .lane-pm2 .lane-label { background: #e74c3c; }
+  .lane-decision .lane-label { background: #34495e; }
+  /* Nodes */
+  .node { padding: 10px 16px; border-radius: 10px; font-size: 13px; line-height: 1.5;
+    text-align: center; position: relative; min-width: 100px; max-width: 150px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); cursor: default; transition: transform 0.2s; z-index: 3; }
+  .node:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .node-title { font-weight: bold; margin-bottom: 2px; }
+  .node-sub { font-size: 11px; color: #666; }
+  .node-demand { background: #d6eaf8; border: 2px solid #3498db; color: #2c3e50; }
+  .node-pm { background: #fdebd0; border: 2px solid #e67e22; color: #2c3e50; }
+  .node-tech { background: #d5f5e3; border: 2px solid #27ae60; color: #2c3e50; }
+  .node-test { background: #e8daef; border: 2px solid #9b59b6; color: #2c3e50; }
+  .node-pm2 { background: #fadbd8; border: 2px solid #e74c3c; color: #2c3e50; }
+  .node-decision { background: #d5dbdb; border: 2px solid #34495e; color: #2c3e50; }
+  .node-kcp { background: #fef9e7; border: 2px dashed #f39c12; color: #2c3e50; }
+  /* Arrows SVG overlay */
+  .arrows-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+  /* KCP badge */
+  .kcp-badge { position: absolute; top: -10px; right: -10px; background: #f39c12; color: #fff;
+    font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 10px; z-index: 4; }
+  /* Legend */
+  .legend { display: flex; gap: 24px; justify-content: center; margin-top: 32px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #555; }
+  .legend-color { width: 16px; height: 16px; border-radius: 4px; border: 2px solid; }
+  /* Phase markers */
+  .phase-marker { position: absolute; left: 120px; right: 0; height: 28px; display: flex; align-items: center;
+    font-size: 12px; font-weight: bold; color: #888; padding-left: 16px; border-top: 2px dashed #ccc; z-index: 0; }
+  .phase-collect { top: 0; }
+  .phase-analyze { top: 90px; }
+  .phase-review { top: 270px; }
+  .phase-release { top: 450px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>📋 产品需求管理流程 (L4)</h1>
+  <div class="subtitle">所属主流程：IPD集成产品开发 ｜ 流程类型：使能类 ｜ Owner：产品经理</div>
+
+  <div class="swim-lanes" id="swimLanes">
+    <!-- Phase markers -->
+    <div class="phase-marker" style="top:0">① 需求收集</div>
+    <div class="phase-marker" style="top:90px">② 需求分析</div>
+    <div class="phase-marker" style="top:270px">③ 需求评审</div>
+    <div class="phase-marker" style="top:450px">④ 排期释放</div>
+
+    <!-- Lane 1: 需求方 -->
+    <div class="lane lane-demand">
+      <div class="lane-label">需求方</div>
+      <div class="lane-content">
+        <div class="node node-demand" id="n1">
+          <div class="node-title">A01</div>
+          <div class="node-sub">提交需求</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lane 2: 产品经理 -->
+    <div class="lane lane-pm">
+      <div class="lane-label">产品经理</div>
+      <div class="lane-content">
+        <div class="node node-pm" id="n2">
+          <div class="node-title">A02</div>
+          <div class="node-sub">需求登记分类</div>
+        </div>
+        <div class="node node-pm" id="n3">
+          <div class="node-title">A03</div>
+          <div class="node-sub">需求分析评估</div>
+        </div>
+        <div class="node node-pm" id="n4">
+          <div class="node-title">A04</div>
+          <div class="node-sub">优先级排序</div>
+          <div class="kcp-badge">KCP2</div>
+        </div>
+        <div class="node node-pm" id="n6">
+          <div class="node-title">A06</div>
+          <div class="node-sub">编写PRD</div>
+        </div>
+        <div class="node node-pm" id="n7">
+          <div class="node-title">A07</div>
+          <div class="node-sub">组织需求评审</div>
+          <div class="kcp-badge">KCP1</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lane 3: 技术负责人 -->
+    <div class="lane lane-tech">
+      <div class="lane-label">技术负责人</div>
+      <div class="lane-content">
+        <div class="node node-tech" id="n5">
+          <div class="node-title">A05</div>
+          <div class="node-sub">技术可行性评估</div>
+        </div>
+        <div class="node node-tech" id="n8a">
+          <div class="node-title">A08</div>
+          <div class="node-sub">评审决策</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lane 4: 测试负责人 -->
+    <div class="lane lane-test">
+      <div class="lane-label">测试负责人</div>
+      <div class="lane-content">
+        <div class="node node-test" id="n8b">
+          <div class="node-title">A08</div>
+          <div class="node-sub">评审决策</div>
+          <div class="kcp-badge">KCP4</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lane 5: 项目经理 -->
+    <div class="lane lane-pm2">
+      <div class="lane-label">项目经理</div>
+      <div class="lane-content">
+        <div class="node node-pm2" id="n9">
+          <div class="node-title">A09</div>
+          <div class="node-sub">需求排期</div>
+        </div>
+        <div class="node node-pm2" id="n10">
+          <div class="node-title">A10</div>
+          <div class="node-sub">需求释放</div>
+          <div class="kcp-badge">KCP3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lane 6: 决策层 -->
+    <div class="lane lane-decision">
+      <div class="lane-label">决策层</div>
+      <div class="lane-content">
+        <div class="node node-decision" id="n4a">
+          <div class="node-title">确认</div>
+          <div class="node-sub">Top5需求</div>
+        </div>
+        <div class="node node-decision" id="n8c">
+          <div class="node-title">A08</div>
+          <div class="node-sub">评审决策</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-color" style="background:#d6eaf8;border-color:#3498db"></div>需求方</div>
+    <div class="legend-item"><div class="legend-color" style="background:#fdebd0;border-color:#e67e22"></div>产品经理</div>
+    <div class="legend-item"><div class="legend-color" style="background:#d5f5e3;border-color:#27ae60"></div>技术负责人</div>
+    <div class="legend-item"><div class="legend-color" style="background:#e8daef;border-color:#9b59b6"></div>测试负责人</div>
+    <div class="legend-item"><div class="legend-color" style="background:#fadbd8;border-color:#e74c3c"></div>项目经理</div>
+    <div class="legend-item"><div class="legend-color" style="background:#d5dbdb;border-color:#34495e"></div>决策层</div>
+    <div class="legend-item"><div class="legend-color" style="background:#fef9e7;border-color:#f39c12;border-style:dashed"></div>KCP关键控制点</div>
+  </div>
+</div>
+</body>
+</html>

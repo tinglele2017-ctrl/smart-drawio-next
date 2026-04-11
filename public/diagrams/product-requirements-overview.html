@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>产品需求管理流程 - 总览架构图</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: #f5f0eb; padding: 40px 20px; }
+  .page { max-width: 1200px; margin: 0 auto; }
+  h1 { text-align: center; font-size: 26px; color: #2c3e50; margin-bottom: 6px; letter-spacing: 2px; }
+  .subtitle { text-align: center; font-size: 13px; color: #7f8c8d; margin-bottom: 36px; }
+
+  .diagram { display: flex; flex-direction: column; gap: 28px; align-items: center; }
+
+  /* Row styling */
+  .row { display: flex; gap: 20px; align-items: stretch; width: 100%; justify-content: center; }
+  .row-label { writing-mode: vertical-rl; text-orientation: mixed; font-size: 12px; font-weight: bold;
+    color: #888; letter-spacing: 4px; display: flex; align-items: center; padding: 0 8px; }
+
+  /* Card */
+  .card { background: #fff; border-radius: 14px; padding: 20px 24px; box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    position: relative; min-width: 160px; text-align: center; transition: transform 0.2s; }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+  .card-icon { font-size: 28px; margin-bottom: 8px; }
+  .card-title { font-size: 15px; font-weight: bold; color: #2c3e50; margin-bottom: 4px; }
+  .card-desc { font-size: 12px; color: #7f8c8d; line-height: 1.6; }
+  .card-badge { position: absolute; top: -8px; right: -8px; font-size: 10px; font-weight: bold;
+    padding: 2px 8px; border-radius: 10px; color: #fff; }
+
+  /* Source cards */
+  .source .card-icon { color: #3498db; }
+  .source { border-top: 3px solid #3498db; }
+
+  /* Process cards */
+  .process { border-top: 3px solid #e67e22; background: linear-gradient(135deg, #fff 0%, #fef5ee 100%); }
+  .process .card-icon { color: #e67e22; }
+  .process-main { border-top: 3px solid #e67e22; background: linear-gradient(135deg, #fff5eb 0%, #fef0e0 100%);
+    min-width: 200px; padding: 24px 28px; }
+  .process-main .card-title { font-size: 17px; }
+  .process-main .card-icon { font-size: 36px; }
+
+  /* Output cards */
+  .output { border-top: 3px solid #27ae60; }
+  .output .card-icon { color: #27ae60; }
+
+  /* KPI cards */
+  .kpi { border-top: 3px solid #9b59b6; }
+  .kpi .card-icon { color: #9b59b6; }
+
+  /* Support cards */
+  .support { border-top: 3px solid #95a5a6; }
+  .support .card-icon { color: #95a5a6; }
+
+  /* Arrow */
+  .arrow-down { display: flex; justify-content: center; padding: 4px 0; }
+  .arrow-down svg { width: 30px; height: 30px; }
+  .arrow-right { display: flex; align-items: center; padding: 0 4px; }
+  .arrow-right svg { width: 30px; height: 30px; }
+
+  /* Flow steps row */
+  .flow-steps { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: center; }
+  .step { background: #fff; border-radius: 10px; padding: 12px 16px; font-size: 13px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #e67e22; min-width: 90px; text-align: center; }
+  .step-num { font-weight: bold; color: #e67e22; font-size: 14px; }
+  .step-name { color: #2c3e50; margin-top: 2px; }
+  .step-arrow { font-size: 20px; color: #ccc; }
+
+  /* KCP row */
+  .kcp-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .kcp-item { background: #fef9e7; border: 2px dashed #f39c12; border-radius: 10px; padding: 10px 16px;
+    font-size: 12px; text-align: center; min-width: 140px; }
+  .kcp-num { font-weight: bold; color: #f39c12; }
+
+  /* Bottom row */
+  .bottom-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+  /* Section label */
+  .section { font-size: 14px; font-weight: bold; color: #888; text-align: center;
+    padding: 6px 20px; border-bottom: 2px solid #ddd; margin-bottom: 4px; display: inline-block; }
+
+  .divider { width: 80%; height: 1px; background: linear-gradient(90deg, transparent, #ccc, transparent); margin: 8px 0; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>📋 产品需求管理流程 (L4) — 总览架构</h1>
+  <div class="subtitle">所属主流程：IPD集成产品开发 ｜ 流程类型：使能类 ｜ Owner：产品经理</div>
+
+  <div class="diagram">
+
+    <!-- Source Layer -->
+    <div><span class="section">① 需求来源（上游输入）</span></div>
+    <div class="row">
+      <div class="card source">
+        <div class="card-icon">💬</div>
+        <div class="card-title">客户反馈</div>
+        <div class="card-desc">客户工单<br>用户调研</div>
+      </div>
+      <div class="card source">
+        <div class="card-icon">📊</div>
+        <div class="card-title">市场调研</div>
+        <div class="card-desc">竞品分析<br>行业趋势</div>
+      </div>
+      <div class="card source">
+        <div class="card-icon">📈</div>
+        <div class="card-title">运营数据</div>
+        <div class="card-desc">指标异常<br>用户行为</div>
+      </div>
+      <div class="card source">
+        <div class="card-icon">💡</div>
+        <div class="card-title">内部提议</div>
+        <div class="card-desc">改进方案<br>技术优化</div>
+      </div>
+    </div>
+
+    <!-- Arrow -->
+    <div class="arrow-down">
+      <svg viewBox="0 0 30 30"><path d="M15 5 L15 22 M8 17 L15 24 L22 17" stroke="#ccc" stroke-width="2" fill="none"/></svg>
+    </div>
+
+    <!-- Main Process -->
+    <div><span class="section">② 核心流程（4个阶段 11个活动）</span></div>
+    <div class="flow-steps">
+      <div class="step"><div class="step-num">A01</div><div class="step-name">提交需求</div></div>
+      <div class="step-arrow">→</div>
+      <div class="step"><div class="step-num">A02</div><div class="step-name">登记分类</div></div>
+      <div class="step-arrow">→</div>
+      <div class="step"><div class="step-num">A03</div><div class="step-name">分析评估</div></div>
+      <div class="step-arrow">→</div>
+      <div class="step"><div class="step-num">A04</div><div class="step-name">优先级排序</div></div>
+      <div class="step-arrow">→</div>
+      <div class="step"><div class="step-num">A05</div><div class="step-name">技术评估</div></div>
+      <div class="step-arrow">→</div>
+      <div class="step"><div class="step-num">A06</div><div class="step-name">编写PRD</div></div>
+      <div class="step-arrow">→</div>
+      <div class="step"><div class="step-num">A07</div><div class="step-name">需求评审</div></div>
+      <div class="step-arrow">→</div>
+      <div class="step"><div class="step-num">A09</div><div class="step-name">需求排期</div></div>
+      <div class="step-arrow">→</div>
+      <div class="step"><div class="step-num">A10</div><div class="step-name">需求释放</div></div>
+    </div>
+
+    <!-- Arrow -->
+    <div class="arrow-down">
+      <svg viewBox="0 0 30 30"><path d="M15 5 L15 22 M8 17 L15 24 L22 17" stroke="#ccc" stroke-width="2" fill="none"/></svg>
+    </div>
+
+    <!-- KCP Row -->
+    <div><span class="section">③ 关键控制点 (KCP)</span></div>
+    <div class="kcp-row">
+      <div class="kcp-item"><div class="kcp-num">KCP1</div>需求评审关卡<br>PRD完整性检查</div>
+      <div class="kcp-item"><div class="kcp-num">KCP2</div>优先级合理性<br>决策层确认Top5</div>
+      <div class="kcp-item"><div class="kcp-num">KCP3</div>需求变更审批<br>影响范围评估</div>
+      <div class="kcp-item"><div class="kcp-num">KCP4</div>验收标准完整性<br>Given-When-Then</div>
+    </div>
+
+    <!-- Arrow -->
+    <div class="arrow-down">
+      <svg viewBox="0 0 30 30"><path d="M15 5 L15 22 M8 17 L15 24 L22 17" stroke="#ccc" stroke-width="2" fill="none"/></svg>
+    </div>
+
+    <!-- Output Layer -->
+    <div><span class="section">④ 输出交付（下游接口）</span></div>
+    <div class="row">
+      <div class="card output">
+        <div class="card-icon">📄</div>
+        <div class="card-title">PRD文档</div>
+        <div class="card-desc">用户故事<br>验收标准<br>原型图</div>
+      </div>
+      <div class="card output">
+        <div class="card-icon">📋</div>
+        <div class="card-title">需求清单</div>
+        <div class="card-desc">需求ID<br>优先级<br>排期</div>
+      </div>
+      <div class="card output">
+        <div class="card-icon">📝</div>
+        <div class="card-title">评审纪要</div>
+        <div class="card-desc">评审结论<br>待修改项</div>
+      </div>
+      <div class="card output">
+        <div class="card-icon">🔔</div>
+        <div class="card-title">变更通知</div>
+        <div class="card-desc">变更内容<br>影响范围</div>
+      </div>
+    </div>
+
+    <!-- Arrow -->
+    <div class="arrow-down">
+      <svg viewBox="0 0 30 30"><path d="M15 5 L15 22 M8 17 L15 24 L22 17" stroke="#ccc" stroke-width="2" fill="none"/></svg>
+    </div>
+
+    <!-- Downstream -->
+    <div><span class="section">⑤ 下游流程</span></div>
+    <div class="row">
+      <div class="card process">
+        <div class="card-icon">⚙️</div>
+        <div class="card-title">产品开发流程</div>
+        <div class="card-desc">L3主流程<br>需求→设计→开发→测试</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- KPI & Support -->
+    <div class="bottom-row">
+      <div class="card kpi" style="min-width:200px">
+        <div class="card-badge" style="background:#9b59b6">KPI</div>
+        <div class="card-icon">🎯</div>
+        <div class="card-title">绩效指标</div>
+        <div class="card-desc">交付周期 ≤ 14天<br>一次通过率 ≥ 85%<br>需求遗漏率 ≤ 5%</div>
+      </div>
+      <div class="card support" style="min-width:200px">
+        <div class="card-icon">🖥️</div>
+        <div class="card-title">IT系统支撑</div>
+        <div class="card-desc">Jira · 飞书文档<br>飞书多维表格 · 飞书会议</div>
+      </div>
+      <div class="card support" style="min-width:200px">
+        <div class="card-icon">📑</div>
+        <div class="card-title">表单模板</div>
+        <div class="card-desc">需求工单 · PRD模板<br>技术评估表 · 变更申请表</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
